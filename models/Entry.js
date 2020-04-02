@@ -7,18 +7,47 @@ var Schema = mongoose.Schema;
 // This is similar to a Sequelize model
 var EntrySchema = new Schema({
   // `title` is required and of type String
+
   courseTitle: {
     type: String,
-    required: true
+    // required: true
   },
   // `link` is required and of type String
   dayTitle: {
     type: String,
-    required: true
+    // required: true
   },
   content: {
     type: String,
-    required: true
+    // required: true
+  },
+
+  courseTitle2: {
+    type: String,
+  
+  },
+  // `link` is required and of type String
+  dayTitle2: {
+    type: String,
+
+  },
+  content2: {
+    type: String,
+
+  },
+
+  courseTitle3: {
+    type: String,
+
+  },
+  // `link` is required and of type String
+  dayTitle3: {
+    type: String,
+  
+  },
+  content3: {
+    type: String,
+ 
   },
   
   // `note` is an object that stores a Note id

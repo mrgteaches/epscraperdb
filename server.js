@@ -31,10 +31,109 @@ mongoose.connect("mongodb://localhost/epscraperdb", { useNewUrlParser: true });
 
 // Routes
 
+// app.get("/scrape", function (req, res) {
+
+//   var result = {};
+//   var dayNo = "7";
+
+//   //clear the database before adding new content
+//   db.Entry.deleteMany({})
+//     .then(function (dbEntry) {
+//       console.log(dbEntry);
+//     })
+//     .catch(function (err) {
+//       console.log(err);
+//     });
+
+//   //first subject
+//   axios.get("https://www.allinonehighschool.com/trigonometryprecalculus/").then(function (response) {
+
+//     var $ = cheerio.load(response.data);
+
+//     result.courseTitle = $("header.entry-header")
+//       .children("h1")
+//       .text();
+
+//     result.dayTitle = $("div.entry-content")
+//       .children("p")
+//       .children("#day" + dayNo).text();
+
+//     result.content = $("div.entry-content")
+//       .children("p")
+//       .children("#day" + dayNo).parent().next("ol").html();
+
+//     db.Entry.create(result)
+//       .then(function (dbEntry) {
+//         console.log(dbEntry);
+//       })
+//       .catch(function (err) {
+//         console.log(err);
+//       });
+//   }); //closes axios.get
+
+//   // second subject
+//   axios.get("https://allinonehighschool.com/calculus/").then(function (response) {
+
+//     var $ = cheerio.load(response.data);
+
+//     result.courseTitle = $("header.entry-header")
+//       .children("h1")
+//       .text();
+
+//     result.dayTitle = $("div.entry-content")
+//       .children("p")
+//       .children("#day" + dayNo).text();
+
+//     result.content = $("div.entry-content")
+//       .children("p")
+//       .children("#day" + dayNo).parent().next("ol").html();
+
+//     db.Entry.create(result)
+//       .then(function (dbEntry) {
+//         console.log(dbEntry);
+//       })
+//       .catch(function (err) {
+//         console.log(err);
+//       });
+//   }); //closes axios.get
+
+//   //third subject
+//   axios.get("https://allinonehighschool.com/spanish-1-2018/").then(function (response) {
+
+//     var $ = cheerio.load(response.data);
+
+//     result.courseTitle = $("header.entry-header")
+//       .children("h1")
+//       .text();
+
+//     result.dayTitle = $("div.entry-content")
+//       .children("p")
+//       .children("#day" + dayNo).text();
+
+//     result.content = $("div.entry-content")
+//       .children("p")
+//       .children("#day" + dayNo).parent().next("ol").html();
+
+//     db.Entry.create(result)
+//       .then(function (dbEntry) {
+//         console.log(dbEntry);
+//       })
+//       .catch(function (err) {
+//         console.log(err);
+//       });
+//   }); // end third subject
+
+//   // Send a message to the client
+//   res.send("Scrape Complete");
+// }); //closes app.get
+
+//test new version of app.get
 app.get("/scrape", function (req, res) {
 
   var result = {};
-  var dayNo = "4";
+  var result2 = {};
+  var result3 = {};
+  var dayNo = "7";
 
   //clear the database before adding new content
   db.Entry.deleteMany({})
@@ -60,7 +159,7 @@ app.get("/scrape", function (req, res) {
 
     result.content = $("div.entry-content")
       .children("p")
-      .children("#day" + dayNo).parent().next("ol").text();
+      .children("#day" + dayNo).parent().next("ol").html();
 
     db.Entry.create(result)
       .then(function (dbEntry) {
@@ -71,24 +170,24 @@ app.get("/scrape", function (req, res) {
       });
   }); //closes axios.get
 
-  //second subject
+  // second subject
   axios.get("https://allinonehighschool.com/calculus/").then(function (response) {
 
     var $ = cheerio.load(response.data);
 
-    result.courseTitle = $("header.entry-header")
+    result2.courseTitle2 = $("header.entry-header")
       .children("h1")
       .text();
 
-    result.dayTitle = $("div.entry-content")
+    result2.dayTitle2 = $("div.entry-content")
       .children("p")
       .children("#day" + dayNo).text();
 
-    result.content = $("div.entry-content")
+    result2.content2 = $("div.entry-content")
       .children("p")
-      .children("#day" + dayNo).parent().next("ol").text();
+      .children("#day" + dayNo).parent().next("ol").html();
 
-    db.Entry.create(result)
+    db.Entry.create(result2)
       .then(function (dbEntry) {
         console.log(dbEntry);
       })
@@ -102,30 +201,37 @@ app.get("/scrape", function (req, res) {
 
     var $ = cheerio.load(response.data);
 
-    result.courseTitle = $("header.entry-header")
+    result3.courseTitle3 = $("header.entry-header")
       .children("h1")
       .text();
 
-    result.dayTitle = $("div.entry-content")
+    result3.dayTitle3 = $("div.entry-content")
       .children("p")
       .children("#day" + dayNo).text();
 
-    result.content = $("div.entry-content")
+    result3.content3 = $("div.entry-content")
       .children("p")
-      .children("#day" + dayNo).parent().next("ol").text();
+      .children("#day" + dayNo).parent().next("ol").html();
 
-    db.Entry.create(result)
+    db.Entry.create(result3)
       .then(function (dbEntry) {
         console.log(dbEntry);
       })
       .catch(function (err) {
         console.log(err);
       });
+
   }); // end third subject
 
   // Send a message to the client
   res.send("Scrape Complete");
+
+ 
 }); //closes app.get
+
+
+//end of test
+
 
 // Route for getting all Articles from the db
 app.get("/articles", function (req, res) {
