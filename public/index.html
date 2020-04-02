@@ -10,7 +10,6 @@
     }
 
     #wrapper {
-      /* width: 960px; */
       width: 90%;
       margin-left: auto;
       margin-right: auto;
@@ -19,7 +18,6 @@
 
     button {
       background-color: #4CAF50;
-      /* Green */
       border: none;
       color: white;
       padding: 15px 32px;
@@ -27,35 +25,6 @@
       text-decoration: none;
       display: inline-block;
       font-size: 16px;
-    }
-
-    #articles {
-      display: inline-block;
-      overflow: auto;
-      width: 90%;
-      height: 700px;
-    }
-
-    #notes {
-      float: right;
-      width: 30%;
-    }
-
-    textarea,
-    input {
-      display: block;
-      width: 100%;
-      background-color: #FCF5C7;
-    }
-
-    input {
-      height: 36px;
-      font-size: 24px;
-    }
-
-    textarea {
-      height: 200px;
-      font-size: 18px;
     }
 
     p {
@@ -66,22 +35,27 @@
 
 <body>
   <div id="wrapper">
+
     <h1>EP Scraper</h1>
     <div>
       <button class="scrape-new">Scrape!</button>
       <button class="show-new">Show lessons</button>
     </div>
-    <!-- <div id="articles"></div> -->
-    <div id="subjectOne">Subject One:</div>
-    <br>
-    <div id="subjectTwo">Subject Two:</div>
-    <br>
-    <div id="subjectThree">Subject Three:</div>
-    <br>
-    <div id="notes"></div>
+
+    <div class="subjects">
+      <div id="subjectOne">Subject One:</div>
+      <br>
+      <div id="subjectTwo">Subject Two:</div>
+      <br>
+      <div id="subjectThree">Subject Three:</div>
+      <br>
+    </div>
+
   </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="app.js"></script>
+
 </body>
 
 </html>

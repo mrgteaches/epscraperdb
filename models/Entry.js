@@ -1,62 +1,37 @@
 var mongoose = require("mongoose");
 
-// Save a reference to the Schema constructor
 var Schema = mongoose.Schema;
 
-// Using the Schema constructor, create a new UserSchema object
-// This is similar to a Sequelize model
 var EntrySchema = new Schema({
-  // `title` is required and of type String
 
   courseTitle: {
-    type: String,
-    // required: true
+    type: String
   },
-  // `link` is required and of type String
   dayTitle: {
-    type: String,
-    // required: true
+    type: String
   },
   content: {
-    type: String,
-    // required: true
+    type: String
   },
-
   courseTitle2: {
-    type: String,
-  
+    type: String
   },
-  // `link` is required and of type String
   dayTitle2: {
-    type: String,
-
+    type: String
   },
   content2: {
-    type: String,
-
+    type: String
   },
-
   courseTitle3: {
-    type: String,
-
+    type: String
   },
-  // `link` is required and of type String
   dayTitle3: {
-    type: String,
-  
+    type: String
   },
   content3: {
-    type: String,
- 
+    type: String
   },
-  
-  // `note` is an object that stores a Note id
-  // The ref property links the ObjectId to the Note model
-  // This allows us to populate the Article with an associated Note
-  note: {
-    type: Schema.Types.ObjectId,
-    ref: "Note"
-  }
+
 });
 
 // This creates our model from the above schema, using mongoose's model method
