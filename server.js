@@ -31,6 +31,7 @@ app.get("/scrape", function (req, res) {
   var result = {};
   var result2 = {};
   var result3 = {};
+  var result4 = {};
   var dayNo = "7";
 
   //clear the database before adding new content
@@ -92,7 +93,7 @@ app.get("/scrape", function (req, res) {
       .catch(function (err) {
         console.log(err);
       });
-  }); //closes axios.get
+  }); //closes axios.get third subject
 
   //third subject
   axios.get("https://allinonehighschool.com/spanish-1-2018/").then(function (response) {
@@ -120,6 +121,33 @@ app.get("/scrape", function (req, res) {
       });
 
   }); // end third subject
+
+   //fourth subject
+   axios.get("https://allinonehighschool.com/bible-2/bible-2/").then(function (response) {
+
+    var $ = cheerio.load(response.data);
+
+    result4.courseTitle4 = $("header.entry-header")
+      .children("h1")
+      .text();
+
+    result4.dayTitle4 = $("div.entry-content")
+      .children("p")
+      .children("#day" + dayNo).text();
+
+    result4.content4 = $("div.entry-content")
+      .children("p")
+      .children("#day" + dayNo).parent().next("ol").html();
+
+    db.Entry.create(result4)
+      .then(function (dbEntry) {
+        console.log(dbEntry);
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+
+  }); // end fourth subject
 
   // Send a message to the client
   res.send("Scrape Complete");

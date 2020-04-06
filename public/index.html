@@ -4,50 +4,33 @@
 <head>
   <meta charset="UTF-8">
   <title>EP Scraper</title>
-  <style>
-    body {
-      background-color: white;
-    }
-
-    #wrapper {
-      width: 90%;
-      margin-left: auto;
-      margin-right: auto;
-      padding-top: 5%;
-    }
-
-    button {
-      background-color: #4CAF50;
-      border: none;
-      color: white;
-      padding: 15px 32px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-    }
-
-    p {
-      font-size: 24px;
-    }
-  </style>
+  <link href="reset.css" type="text/css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="style.css">  
 </head>
 
 <body>
   <div id="wrapper">
 
+    <header>
+      <div class="logo">
+        <img src="EPYouTubeBanner2-01.jpg" />
+      </div>
+    </header>
+
     <h1>EP Scraper</h1>
-    <div>
+    <div class="buttons">
       <button class="scrape-new">Scrape!</button>
       <button class="show-new">Show lessons</button>
     </div>
 
-    <div class="subjects">
-      <div id="subjectOne">Subject One:</div>
+    <div>
+      <div class= "subjects" id="subjectOne"></div>
       <br>
-      <div id="subjectTwo">Subject Two:</div>
+      <div class= "subjects" id="subjectTwo"></div>
       <br>
-      <div id="subjectThree">Subject Three:</div>
+      <div class= "subjects" id="subjectThree"></div>
+      <br>
+      <div class= "subjects" id="subjectFour"></div>
       <br>
     </div>
 

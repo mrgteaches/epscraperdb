@@ -31,6 +31,15 @@ var EntrySchema = new Schema({
   content3: {
     type: String
   },
+  courseTitle4: {
+    type: String
+  },
+  dayTitle4: {
+    type: String
+  },
+  content4: {
+    type: String
+  },
 
 });
 

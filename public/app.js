@@ -3,7 +3,7 @@ $(document).ready(function () {
   $(".show-new").on("click", function (event) {
 
     $.getJSON("/entries", function (data) {
-      
+
       for (var i = 0; i < data.length; i++) {
 
         if (data[i].courseTitle) {
@@ -18,7 +18,13 @@ $(document).ready(function () {
           $("#subjectThree").append("<p data-id='" + data[i]._id + "'>" + data[i].courseTitle3 + "<br />" + data[i].dayTitle3 + "</p>"
             + "<br />" + data[i].content3 + "<br />" + "</p>")
         }
+        if (data[i].courseTitle4) {
+          $("#subjectFour").append("<p data-id='" + data[i]._id + "'>" + data[i].courseTitle4 + "<br />" + data[i].dayTitle4 + "</p>"
+            + "<br />" + data[i].content4 + "<br />" + "</p>")
+        }
       }
+      var studentName = "Lee";
+      $(".subjects").prepend("<h2>" + studentName + "</h2>");
     });
   });
 
@@ -29,5 +35,7 @@ $(document).ready(function () {
       window.location.reload();
     });
   });
+
+
 
 });
