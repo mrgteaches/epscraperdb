@@ -26,7 +26,11 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/epscraperdb", { useNewUrlParser: true });
+// mongoose.connect("mongodb://localhost/epscraperdb", { useNewUrlParser: true });
+
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/epscraperdb";
+
+mongoose.connect(MONGODB_URI);
 
 // Routes
 
