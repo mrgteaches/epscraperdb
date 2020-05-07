@@ -6,7 +6,8 @@ var cheerio = require("cheerio");
 
 var db = require("./models");
 
-var PORT = 3000;
+// var PORT = 3000;
+var PORT = process.env.PORT || 3000;
 
 var coursesList = ["https://allinonehomeschool.com/reading-4/", "https://allinonehomeschool.com/math/", "https://allinonehomeschool.com/language-arts-3/", "https://allinonehomeschool.com/history-year-1/"];
 var studentName = "Lee";
@@ -29,7 +30,7 @@ mongoose.connect("mongodb://localhost/epscraperdb", { useNewUrlParser: true });
 
 // Routes
 
-app.get("/scrape", function (req, res) {
+app.get("/", function (req, res) {
   var resultHold = {};
   var dayNo = 53;
 

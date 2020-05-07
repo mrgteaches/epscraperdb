@@ -12,7 +12,7 @@ $(document).ready(function () {
       });
       });
       
-    $.get("/scrape", function (data) {
+    $.get("/", function (data) {
     });
 
 
