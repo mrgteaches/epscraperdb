@@ -13,29 +13,43 @@ button {
     background-color: #4CAF50;
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 1rem 2rem;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   .buttons {
-      text-align: center;
+      display: flex;
+      justify-content: center;
   }
 
+
 p {
-    font-size: 24px;
+    font-size: 1.5rem;
+    padding-bottom: 1rem;
   }
 
 h1 {
-    font-size: 42px;
-      padding: 30px;
+    font-size: 2.5rem;
+      padding: 2rem;
       text-align: center;
   }
 
   h2 {
-      font-size: 28px;
-      padding-bottom: 24px;
+      font-size: 1.8rem;
+      padding-bottom: 2rem;
       font-weight: bold;
+  }
+
+  strong {
+    font-size: 1.2rem;
+    padding-bottom: .5rem;
+  }
+
+  ol li {
+    list-style-type:decimal!important;
+    margin-left:1rem;
+    font-size: 1rem;
   }

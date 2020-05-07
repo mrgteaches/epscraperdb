@@ -8,6 +8,9 @@ var db = require("./models");
 
 var PORT = 3000;
 
+var coursesList = ["https://allinonehomeschool.com/reading-4/", "https://allinonehomeschool.com/math/", "https://allinonehomeschool.com/language-arts-3/", "https://allinonehomeschool.com/history-year-1/"];
+var studentName = "Lee";
+
 // Initialize Express
 var app = express();
 
@@ -27,12 +30,8 @@ mongoose.connect("mongodb://localhost/epscraperdb", { useNewUrlParser: true });
 // Routes
 
 app.get("/scrape", function (req, res) {
-
-  var result = {};
-  var result2 = {};
-  var result3 = {};
-  var result4 = {};
-  var dayNo = "7";
+  var resultHold = {};
+  var dayNo = 53;
 
   //clear the database before adding new content
   db.Entry.deleteMany({})
@@ -43,24 +42,24 @@ app.get("/scrape", function (req, res) {
       console.log(err);
     });
 
-  //first subject
-  axios.get("https://www.allinonehighschool.com/trigonometryprecalculus/").then(function (response) {
+  for(var i=0; i<coursesList.length; i++){
+  var course = coursesList[i];
+
+  axios.get(course).then(function (response) {
 
     var $ = cheerio.load(response.data);
 
-    result.courseTitle = $("header.entry-header")
+    resultHold.studentName = studentName;
+    resultHold.course = course;
+
+    resultHold.courseTitle = $("header.entry-header")
       .children("h1")
       .text();
 
-    result.dayTitle = $("div.entry-content")
-      .children("p")
-      .children("#day" + dayNo).text();
+    resultHold.content = $("div.entry-content")
+      .find("#day" + dayNo).html();
 
-    result.content = $("div.entry-content")
-      .children("p")
-      .children("#day" + dayNo).parent().next("ol").html();
-
-    db.Entry.create(result)
+    db.Entry.create(resultHold)
       .then(function (dbEntry) {
         console.log(dbEntry);
       })
@@ -68,96 +67,16 @@ app.get("/scrape", function (req, res) {
         console.log(err);
       });
   }); //closes axios.get 
-
-  // second subject
-  axios.get("https://allinonehighschool.com/calculus/").then(function (response) {
-
-    var $ = cheerio.load(response.data);
-
-    result2.courseTitle2 = $("header.entry-header")
-      .children("h1")
-      .text();
-
-    result2.dayTitle2 = $("div.entry-content")
-      .children("p")
-      .children("#day" + dayNo).text();
-
-    result2.content2 = $("div.entry-content")
-      .children("p")
-      .children("#day" + dayNo).parent().next("ol").html();
-
-    db.Entry.create(result2)
-      .then(function (dbEntry) {
-        console.log(dbEntry);
-      })
-      .catch(function (err) {
-        console.log(err);
-      });
-  }); //closes axios.get third subject
-
-  //third subject
-  axios.get("https://allinonehighschool.com/spanish-1-2018/").then(function (response) {
-
-    var $ = cheerio.load(response.data);
-
-    result3.courseTitle3 = $("header.entry-header")
-      .children("h1")
-      .text();
-
-    result3.dayTitle3 = $("div.entry-content")
-      .children("p")
-      .children("#day" + dayNo).text();
-
-    result3.content3 = $("div.entry-content")
-      .children("p")
-      .children("#day" + dayNo).parent().next("ol").html();
-
-    db.Entry.create(result3)
-      .then(function (dbEntry) {
-        console.log(dbEntry);
-      })
-      .catch(function (err) {
-        console.log(err);
-      });
-
-  }); // end third subject
-
-   //fourth subject
-   axios.get("https://allinonehighschool.com/bible-2/bible-2/").then(function (response) {
-
-    var $ = cheerio.load(response.data);
-
-    result4.courseTitle4 = $("header.entry-header")
-      .children("h1")
-      .text();
-
-    result4.dayTitle4 = $("div.entry-content")
-      .children("p")
-      .children("#day" + dayNo).text();
-
-    result4.content4 = $("div.entry-content")
-      .children("p")
-      .children("#day" + dayNo).parent().next("ol").html();
-
-    db.Entry.create(result4)
-      .then(function (dbEntry) {
-        console.log(dbEntry);
-      })
-      .catch(function (err) {
-        console.log(err);
-      });
-
-  }); // end fourth subject
+  };//closes for loop for courses
 
   // Send a message to the client
   res.send("Scrape Complete");
-
 }); //closes app.get
 
 // Route for getting all entries from the db
 app.get("/entries", function (req, res) {
   // Grab every document in the Entries collection
-  db.Entry.find({})
+  db.Entry.find()
     .then(function (dbEntry) {
       // If we were able to successfully find Entries, send them back to the client
       res.json(dbEntry);
@@ -167,6 +86,7 @@ app.get("/entries", function (req, res) {
       res.json(err);
     });
 });
+
 
 // Start the server
 app.listen(PORT, function () {

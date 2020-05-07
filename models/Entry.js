@@ -4,6 +4,12 @@ var Schema = mongoose.Schema;
 
 var EntrySchema = new Schema({
 
+  course: {
+    type:String
+  },
+  studentName: {
+    type: String
+  },
   courseTitle: {
     type: String
   },
