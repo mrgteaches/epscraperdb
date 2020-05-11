@@ -9,7 +9,7 @@ var db = require("./models");
 // var PORT = 3000;
 var PORT = process.env.PORT || 3000;
 
-var coursesList = ["https://allinonehomeschool.com/reading-4/", "https://allinonehomeschool.com/math/", "https://allinonehomeschool.com/language-arts-3/", "https://allinonehomeschool.com/history-year-1/"];
+var coursesList = ["https://allinonehomeschool.com/language-arts-5-2/  ", "https://allinonehomeschool.com/math/", "https://allinonehomeschool.com/language-arts-3/", "https://allinonehomeschool.com/history-year-1/"];
 var studentName = "Lee";
 
 // Initialize Express
@@ -30,13 +30,13 @@ app.use(express.static("public"));
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/epscraperdb";
 
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI,  { useNewUrlParser: true });
 
 // Routes
 
-app.get("/", function (req, res) {
+app.get("/scrape", function (req, res) {
   var resultHold = {};
-  var dayNo = 53;
+  var dayNo = 167;
 
   //clear the database before adding new content
   db.Entry.deleteMany({})
