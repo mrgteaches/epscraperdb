@@ -4,8 +4,8 @@ var Schema = mongoose.Schema;
 
 var EntrySchema = new Schema({
 
-  course: {
-    type:String
+  dayNo: {
+    type: Number
   },
   studentName: {
     type: String

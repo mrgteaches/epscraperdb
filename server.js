@@ -11,6 +11,7 @@ var PORT = process.env.PORT || 3000;
 
 var coursesList = ["https://allinonehomeschool.com/language-arts-5-2/  ", "https://allinonehomeschool.com/math/", "https://allinonehomeschool.com/language-arts-3/", "https://allinonehomeschool.com/history-year-1/"];
 var studentName = "Lee";
+var dayNumbers = [124, 56, 37, 100];
 
 // Initialize Express
 var app = express();
@@ -36,7 +37,6 @@ mongoose.connect(MONGODB_URI,  { useNewUrlParser: true });
 
 app.get("/scrape", function (req, res) {
   var resultHold = {};
-  var dayNo = 167;
 
   //clear the database before adding new content
   db.Entry.deleteMany({})
@@ -49,14 +49,17 @@ app.get("/scrape", function (req, res) {
 
   for(var i=0; i<coursesList.length; i++){
   var course = coursesList[i];
+  var dayNo = dayNumbers[i];
 
   axios.get(course).then(function (response) {
 
     var $ = cheerio.load(response.data);
-
+   
     resultHold.studentName = studentName;
-    resultHold.course = course;
-
+    resultHold.dayNo = dayNo;
+    //doesn't take current day number, uses last one for all, 
+    //takes the correct course from the array and uses it, 
+    //(but stored the last one in the database, which isn't needed so it was taken out.)
     resultHold.courseTitle = $("header.entry-header")
       .children("h1")
       .text();
