@@ -48,8 +48,8 @@ app.get("/scrape", function (req, res) {
     });
 
   for(var i=0; i<coursesList.length; i++){
-  var course = coursesList[i];
-  var dayNo = dayNumbers[i];
+  let course = coursesList[i];
+  let dayNo = dayNumbers[i];
 
   axios.get(course).then(function (response) {
 
